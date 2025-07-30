@@ -1,0 +1,50 @@
+import random 
+
+
+print("Welcome to the Magic Number Puzzle Game !")
+
+number_range=int(input("Enter the range of the magic number (1 to n): "))
+
+
+magic_number= random.randint(1, number_range)
+
+attempts=0
+
+level = input("Choose your level (easy, medium, hard): ").lower()
+
+
+if level=="easy":
+
+    max_attempts=7
+
+if level=="medium":
+
+    max_attempts=5
+
+if level=="hard":
+     
+     max_attempts=3
+
+
+print("Guess the magic number (between 1 and ", number_range,"):")
+
+
+while attempts < max_attempts:
+        guess = int(input("Enter Your Guess : "))
+
+        attempts += 1
+
+        if guess == magic_number:
+            print("Congratulations! You've guessed the magic number:", magic_number)
+            break
+
+
+        elif guess > magic_number:
+            print("Too high! Try again.")
+
+
+        else:
+            print("Too low! Try again.")
+
+if attempts == max_attempts:
+        print("Sorry, you've used all your attempts. The magic number was:", magic_number)
