@@ -1,6 +1,6 @@
 import random
 
-wordList = ["rizz", "ohio", "sigma", "tiktok", "skibidi"]
+wordList = ["apple", "banana", "cherry", "date",  "grape"]
 
 word = random.choice(wordList)
 
