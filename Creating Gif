@@ -1,0 +1,15 @@
+import imageio as iio
+
+filenames=["6f210877-ec6c-45ff-a64a-f74a5d550172.png","cb8cde84-6b39-43b6-8c64-03a4b55f626c.png"]
+
+images=[]
+
+for filename in filenames:
+    images.append(iio.imread(filename))
+
+iio.mimsave("output.gif",images,duration =500,loop=0)
+
+
+  # Paths for the images 
+  # https://sdmntprpolandcentral.oaiusercontent.com/files/00000000-ed00-620a-bdcc-66c07288044c/raw?se=2025-08-01T07%3A09%3A10Z&sp=r&sv=2024-08-04&sr=b&scid=b6d2eb58-ded3-5b25-8e89-2b8b6e0686ef&skoid=f28c0102-4d9d-4950-baf0-4a8e5f6cf9d4&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-08-01T04%3A43%3A27Z&ske=2025-08-02T04%3A43%3A27Z&sks=b&skv=2024-08-04&sig=ozlWt%2B%2Bpxr3EPhXR4vaxYDtPOg/49cLvN3BqaRB30eg%3D
+# https://sdmntpritalynorth.oaiusercontent.com/files/00000000-2a68-6246-8114-cb13c0585b14/raw?se=2025-08-01T07%3A04%3A09Z&sp=r&sv=2024-08-04&sr=b&scid=0625daf0-eef6-54f9-8616-16b530d4f632&skoid=f28c0102-4d9d-4950-baf0-4a8e5f6cf9d4&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-08-01T04%3A43%3A28Z&ske=2025-08-02T04%3A43%3A28Z&sks=b&skv=2024-08-04&sig=%2BXhf%2BjsuvkFO4uc3wO5Cbcq%2BtX1CDE1m7KYSdK2d34c%3D
