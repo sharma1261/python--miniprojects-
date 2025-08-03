@@ -1,0 +1,78 @@
+questions=["1. What is the capital of France?",
+    "2. Which planet is known as the Red Planet?",
+    "3. What is the largest mammal?",
+    "4. What is the boiling point of water in Celsius?",
+    "5. What is the square root of 64?",
+    "6. How many continents are there?",
+    "7. Who wrote 'Romeo and Juliet'?",
+    "8. What gas do plants absorb from the air?",
+    "9. How many days are there in a leap year?",
+    "10. Which language is used to create websites?",
+    "11. What color do you get by mixing red and white?",
+    "12. What is the value of Pi (approx)?",
+    "13. What is 100 divided by 5?",
+    "14. Which part of the plant conducts photosynthesis?",
+    "15. Who was the first man to walk on the Moon?",
+    "16. What is the opposite of 'cold'?",
+    "17. Which animal is known as the King of the Jungle?",
+    "18. What is 12 x 12?",
+    "19. How many hours are there in a day?",
+    "20. What is the capital of India?"]
+
+
+options=[ ["A. Paris", "B. London", "C. Rome", "D. Berlin"],
+    ["A. Earth", "B. Mars", "C. Jupiter", "D. Venus"],
+    ["A. Elephant", "B. Blue Whale", "C. Giraffe", "D. Hippo"],
+    ["A. 50", "B. 90", "C. 100", "D. 80"],
+    ["A. 6", "B. 8", "C. 7", "D. 9"],
+    ["A. 5", "B. 6", "C. 7", "D. 8"],
+    ["A. William Wordsworth", "B. William Shakespeare", "C. Charles Dickens", "D. Mark Twain"],
+    ["A. Oxygen", "B. Carbon Dioxide", "C. Nitrogen", "D. Hydrogen"],
+    ["A. 366", "B. 365", "C. 360", "D. 370"],
+    ["A. HTML", "B. Python", "C. C++", "D. Java"],
+    ["A. Orange", "B. Pink", "C. Green", "D. Yellow"],
+    ["A. 3.14", "B. 2.17", "C. 1.62", "D. 4.13"],
+    ["A. 25", "B. 10", "C. 20", "D. 15"],
+    ["A. Roots", "B. Flowers", "C. Leaves", "D. Stems"],
+    ["A. Neil Armstrong", "B. Yuri Gagarin", "C. Rakesh Sharma", "D. Buzz Aldrin"],
+    ["A. Cold", "B. Ice", "C. Hot", "D. Heat"],
+    ["A. Tiger", "B. Elephant", "C. Lion", "D. Leopard"],
+    ["A. 121", "B. 132", "C. 144", "D. 124"],
+    ["A. 12", "B. 24", "C. 18", "D. 22"],
+    ["A. Mumbai", "B. Delhi", "C. Kolkata", "D. Chennai"]]
+
+answers=["A", "B", "B", "C", "B",
+    "D", "B", "B", "A", "A",
+    "B", "A", "B", "C", "A",
+    "C", "C", "C", "B", "B"]
+
+score=0
+attempts=5
+
+
+for i in range(len(questions)):
+    print(questions[i])
+    for option in options[i]:
+        print(option)
+
+    user_answer = input("Enter your answer (A, B, C, D): ").strip().upper()
+
+    if user_answer==answers[i]:
+        print("Correct Answer!")
+        score += 1
+
+    else:
+        print("Wrong Answer! The correct answer is:", answers[i])
+        attempts -= 1
+
+    if attempts>0 and score == len(questions):
+        print("Congratulations! You've answered all questions correctly.")
+        print("Your final score is:", score)
+        break
+
+    elif attempts == 0:
+        print("You have run out of attempts! Game Over.")
+        print("Your final score is:", score)
+        break
+
+    
