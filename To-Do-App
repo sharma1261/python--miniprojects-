@@ -1,0 +1,67 @@
+tasks=[]
+
+while True:
+    print("\nTo-Do List App:")
+    print("1. Add Task")
+    print("2. View Tasks")
+    print("3.Marks Task as Done ")
+    print("4. Remove Task")
+    print("5. Exit")
+
+
+    choice = input("Enter your choice (1-5): ").strip()
+
+    
+    if choice == "1":
+        task_name = input("Enter task: ").strip()
+        if task_name:
+            tasks.append([task_name, "pending"])
+            print("Task added successfully!")
+        else:
+            print("Task cannot be empty.")
+
+
+
+    elif choice == "2":
+        if not tasks:
+            print("No tasks found.")
+        else:
+            print("\n--- TASK LIST (Pending First) ---")
+            sorted_tasks = [t for t in tasks if t[1] == "pending"] + [t for t in tasks if t[1] == "Done"]
+            for i, task in enumerate(sorted_tasks, start=1):
+                print(f"{i}. {task[0]} - {task[1]}")
+
+
+
+    elif choice=="3":
+        if not tasks:
+            print("No tasks available to mark as done.")
+        else:
+            task_number = int(input("Enter the task number to mark as done: ")) 
+            if 1 <= task_number < len(tasks):
+                tasks[task_number-1][1] = "Done"
+                print(f"Task marked as done.")
+            else:
+                print("Invalid task number. Please try again.")
+            
+        
+
+    elif choice=="4":
+        if not tasks:
+            print("No tasks available to remove.")
+        else:
+            task_number = int(input("Enter the task number to remove: ")) - 1
+            if 0 <= task_number < len(tasks):
+                removed_task = tasks.pop(task_number)
+                print(f"Task '{removed_task[0]}' removed successfully.")
+            else:
+                print("Invalid task number. Please try again.")
+
+
+    elif choice=="5":
+        print("Exiting the To-Do List application. Goodbye!")
+        break
+
+
+    else:
+        print("Invalid choice. Please enter a number between 1 and 5.")
