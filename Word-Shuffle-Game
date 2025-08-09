@@ -1,0 +1,42 @@
+import random 
+
+
+words =["Apple","Banana","Cherry","grape","Cascade","Mortal","Frame","Flame"]
+
+
+original_word=random.choice(words)
+
+
+letters=list(original_word)
+random.shuffle(letters)
+scrambled_word = ''.join(letters)
+
+
+print("Welcome to the Word Shuffle Game!")
+
+
+print(("Guess the word:", scrambled_word))
+
+
+past_guess=[]
+attempts=3
+
+
+while attempts > 0:
+    guess = input("your guess:")
+    past_guess.append(guess)
+    if guess == original_word:
+        print("Congratulations! You guessed the word:", original_word)
+        break
+
+    else:
+        attempts-=1
+        print("Wrong guess! You have", attempts, "attempts left.")
+        print("Past guesses:", past_guess)
+
+
+if attempts == 0:
+            print("Game Over! The correct word was:", original_word)
+            print("Your past guesses were:", past_guess)
+        
+
