@@ -1,0 +1,14 @@
+num=int(input("enter the value :"))
+sum=0
+while num>0:
+    digit=num%10
+    sum=sum+digit
+    num//=10
+
+print("sum of the digits :",sum)
+
+if sum%2==0:
+    print("sum of digits is the even number .")
+
+else:
+    print("sum of the digitsis the odd number .")
