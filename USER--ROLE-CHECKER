@@ -1,0 +1,95 @@
+# Roles and their permissions
+roles_permissions = {
+    "admin": {"create", "read", "update", "delete"},
+    "editor": {"read", "update"},
+    "viewer": {"read"},
+    "moderator": {"read", "delete"}
+}
+
+# Users and their assigned roles
+users_roles = {
+    "alice": {"admin"},
+    "bob": {"editor"},
+    "carol": {"viewer"},
+    "dave": {"moderator", "editor"},
+    "eve": {"viewer", "editor"}
+}
+
+
+# Get permissions for a user
+def get_user_permissions(username):
+    roles = users_roles.get(username, set())
+    print("Roles", roles)
+    permissions = set()
+    # print("permisiions", permissions)
+    for role in roles:
+        permissions |= roles_permissions.get(role, set())
+    return permissions
+
+# Find users with a specific permission
+def users_with_permission(permission):
+    return [user for user in users_roles if permission in get_user_permissions(user)]
+
+# Check if a role has all expected permissions
+def check_role_completeness(expected_perms):
+    missing = {}
+    for role, perms in roles_permissions.items():
+        missing_perms = expected_perms - perms
+        if missing_perms:
+            missing[role] = missing_perms
+    return missing
+
+# Remove duplicate users (if duplicate usernames exist with same roles)
+def deduplicate_users(users_dict):
+    seen = set()
+    cleaned = {}
+    for user, roles in users_dict.items():
+        if user not in seen:
+            cleaned[user] = roles
+            seen.add(user)
+    return cleaned
+
+# CLI Interface
+def main():
+    while True:
+        print("\n--- User Role Management ---")
+        print("1. View user permissions")
+        print("2. Find users with specific permission")
+        print("3. Check roles for missing permissions")
+        print("4. Show all roles and permissions")
+        print("5. Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            username = input("Enter username: ").lower()
+            perms = get_user_permissions(username)
+            print("Permission", perms)
+            if perms:
+                print(f"{username} has permissions: {', '.join(perms)}")
+            else:
+                print("User not found or has no permissions.")
+
+        elif choice == "2":
+            perm = input("Enter permission (create, read, update, delete): ").lower()
+            users = users_with_permission(perm)
+            print(f"Users with '{perm}' permission: {', '.join(users)}")
+
+        elif choice == "3":
+            expected = {"create", "read", "update", "delete"}
+            missing = check_role_completeness(expected)
+            for role, missing_perms in missing.items():
+                print(f"Role '{role}' is missing: {', '.join(missing_perms)}")
+
+        elif choice == "4":
+            for role, perms in roles_permissions.items():
+                print(f"{role.title()} -> {', '.join(perms)}")
+
+        elif choice == "5":
+            print("Goodbye!")
+            break
+
+        else:
+            print("Invalid option. Try again.")
+
+if _name_ == "_main_":
+    main()
