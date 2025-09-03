@@ -1,0 +1,15 @@
+countdown timer 
+import time
+
+#step 1: get input from the uer that from where they want to tart the timer
+start=int(input("Entetr the number from where you want to start the Countdown :"))
+
+print("\n---Countdown begins")
+
+#step 2: ue while loop to create the timer
+while start > 0:
+    print(start)
+    time.sleep(1)
+    start-=1
+
+print("--- Time' Up ---")
