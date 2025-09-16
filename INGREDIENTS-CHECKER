@@ -1,0 +1,25 @@
+# step 1:- define the recipe ingredients 
+recipe_ingredients={"flour","sugar","eggs","butter","milk"}
+
+# step 2:-get user input for available ingredients 
+user_input=input("Enter the ingredients you have (seperated by commas): ")
+user_ingredients=set(user_input.split(","))
+
+# step 3:-compaer ingredients 
+missing_ingredients=recipe_ingredients-user_ingredients
+extra_ingredients=user_ingredients-recipe_ingredients
+
+# step 4:-display result
+print("\n--- Ingredients check results ---")
+if missing_ingredients:
+    print(f"you are missing the following inredients :{','.join(missing_ingredients)}")
+else:
+    print("you have all the required ingredients!")
+
+if extra_ingredients:
+    print(f"you have extra ingredients :{','.join(extra_ingredients)}")
+
+else:
+    print("you have all the ingredients required for the recipe ")
+
+    
