@@ -1,0 +1,98 @@
+# Recipe Viewer App
+# Step 1: Load the Recipes From File 
+def load_recipes(file_path):
+    try:
+        with open(file_path, "r") as file:
+            content = file.read().strip()
+        
+            recipes = content.split("\n\n")  # each recipe separated by blank line
+
+        recipe_dict = {}
+        for recipe in recipes:
+            lines = recipe.strip().splitlines()
+            if len(lines) >= 3:
+                name = lines[0].strip()
+                ingredients = lines[1].replace("Ingredients:", "").strip()
+                instructions = lines[2].replace("Instructions:", "").strip()
+
+                recipe_dict[name] = {
+                    "ingredients": ingredients,
+                    "instructions": instructions
+                }
+        return recipe_dict
+    except FileNotFoundError:
+        print("File not found")
+        return {}
+
+
+# step 2: Display Recipe Menu
+def show_menu():
+    print("\n---Recipe Viewer Menu---")
+    print("1. View Recipe by Name")
+    print("2. List All Recipes")
+    print("3.Exit")
+
+# Step 3: Display Recipe Details 
+def view_recipe(recipes):
+    name=input("Enter the name of the recipe : ").strip()
+    if name in recipes:
+        print(f"\n---Recipe {name} Details---")
+        print(f"Ingredients :{recipes[name]['ingredients']}")        
+        print(f"Instructions: {recipes[name]['instructions']}")        
+    else:
+        print("Recipe Not Found!")
+
+# step 4: Main Program
+recipe_file = r"C:\Users\user\OneDrive\Desktop\training\projects\recipes.txt"
+recipes=load_recipes(recipe_file)
+
+while True:
+    show_menu()
+    choice=input("enter your choice(1/2/3) :")
+    if choice=='1':
+        view_recipe(recipes)
+    elif choice=='2':
+        print("\n---All Recipes---")
+        for name in recipes:
+            print(name)
+    elif choice=='3':
+        print("Exiting The Program!")
+        break
+    else:
+        print("Invalid Choice. Please Try Again!")
+
+
+
+
+# Content for the recipes.txt
+# Pasta
+# Ingredients: pasta, tomato sauce, cheese
+# Instructions: Boil pasta, add sauce, mix cheese.
+
+# Sandwich
+# Ingredients: bread, butter, veggies
+# Instructions: Spread butter, add veggies, and serve.
+
+# Omelette
+# Ingredients: eggs, salt, pepper, onion, tomato
+# Instructions: Beat eggs, add chopped veggies, cook in a pan.
+
+# Fried Rice
+# Ingredients: rice, soy sauce, vegetables, oil
+# Instructions: Stir-fry vegetables, add rice, mix soy sauce.
+
+# Salad
+# Ingredients: lettuce, cucumber, tomato, carrot, olive oil
+# Instructions: Chop veggies, mix in a bowl, drizzle olive oil.
+
+# Soup
+# Ingredients: water, vegetables, salt, pepper
+# Instructions: Boil water, add vegetables and spices, simmer.
+
+# Pizza
+# Ingredients: dough, tomato sauce, cheese, toppings
+# Instructions: Spread sauce on dough, add cheese and toppings, bake.
+
+# Tea
+# Ingredients: water, tea leaves, sugar, milk
+# Instructions: Boil water, add tea leaves, sugar, and milk, then strain.
