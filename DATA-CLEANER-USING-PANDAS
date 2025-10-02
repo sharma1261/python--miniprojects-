@@ -1,0 +1,52 @@
+import pandas as pd 
+def load_data(file_path):
+    try:
+        df=pd.read_csv(file_path)
+        print("data Loaded successfully ")
+        return df
+    except Exception as e:
+        print("Error Loading Data: ",e)
+        return None
+
+def clean_data(df):
+    print("\n---Cleaning Data---")
+    print("Intial Shape :",df.shape)
+
+    print("\nHandling Missing Values")
+    df=df.dropna()
+    print("After Dropping Missing Values:",df.shape)
+
+    # Remove Duplicates
+    print("\nRemoving Duplicates")
+    df=df.drop_duplicates()
+    print("After Removing uplicates: ",df.shape)
+
+    return df
+
+def save_data(df,output_path):
+    try:
+        df.to_csv(output_path,index=False)
+        print(f"Cleaned Data Saved to {output_path}")
+    except Exception as e:
+        print("Error Occured :",e)
+
+def main():
+    print("Welcome to The Data Cleaner Tool")
+
+    input_file=input("Enter the path to your csv file :")
+    df=load_data(input_file)
+    if df is None:
+        return 
+    
+    print("\n---intial Data---")
+    print(df.head())
+
+    df=clean_data(df)
+
+    # Save Ceaned Data 
+
+    output_file=input("\nEnter the path to save the Cleaned CSV file :")
+    save_data(df,output_file)
+
+if __name__=="__main__":
+    main()
